@@ -20,6 +20,7 @@ class RestrictedAssetsController extends BaseController
 			header('Content-type: '.$file->getMimeType());
 			header('Content-Disposition: attachment; filename="'.$file->filename.'"');
 			echo file_get_contents($download);
+			IOHelper::deleteFile($download);
 		} else {
 			$this->redirect("404");
 		}
