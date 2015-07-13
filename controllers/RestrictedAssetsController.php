@@ -4,6 +4,8 @@ namespace Craft;
 class RestrictedAssetsController extends BaseController
 {
 
+	protected $allowAnonymous = true;
+
 	public function actionDownload()
 	{
 		$segments = craft()->request->segments;
