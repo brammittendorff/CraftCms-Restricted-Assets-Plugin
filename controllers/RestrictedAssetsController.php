@@ -10,13 +10,13 @@ class RestrictedAssetsController extends BaseController
 	{
 		$segments = craft()->request->segments;
 		$file = craft()->assets->getFileById((int)end($segments));
-
-		$source = $file->getSource();
-		$sourceType = $source->getSourceType();
-		$download = $sourceType->getLocalCopy($file);
-
 		$user = craft()->userSession->getUser();
+
 		if ($file && $user) {
+	                $source = $file->getSource();
+        	        $sourceType = $source->getSourceType();
+               		$download = $sourceType->getLocalCopy($file);
+			
 			header('Content-type: '.$file->getMimeType());
 			header('Content-Disposition: attachment; filename="'.$file->filename.'"');
 			echo file_get_contents($download);
